@@ -109,7 +109,7 @@ public abstract class AbstractStaticResourceHandler {
 
             randomAccessFile.read(bytes);
             response.content().writeBytes(bytes);
-            FileCounter put = FILE_CACHE.put(buffer.toString(), bytes);
+            FILE_CACHE.put(buffer.toString(), bytes);
             response.headers().set(HttpHeaderNames.ETAG, fileETAG);
             ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
         } catch (FileNotFoundException e) {
